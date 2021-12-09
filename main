@@ -1,0 +1,40 @@
+'Hello World' printNl !
+
+"Send message sublclass: to Object"
+Object subclass: #Person.
+Person instanceVariableNames: 'balance'.
+"Instance instanceVariableNames is a message to the Person object."
+
+Person comment: 'I am the symbiosis of man and machine'.
+"Every class in Smalltalk has a description"
+
+
+Integer comment. "'I am the abstract integer class of the GNU Smalltalk system.  My subclasses'' instances can represent signed integers of various 
+sizes (a subclass is picked according to the size), with varying efficiency.'"
+
+Object comment. "I am the root of the Smalltalk class system. All classes in the system are subclasses of me."
+
+Person class extend [
+    new [
+        | r |
+        <category: 'instance creation'>
+        r := super new.
+        r init.
+        ^r
+    ]
+].
+Person extend [
+    init [
+        <category: 'initialization'>
+        balance := 0
+    ]
+    printOn: stream [
+        <category: 'printing'>
+        super printOn: stream.
+        stream nextPutAll: ' with balance: '.
+        balance printOn: stream
+    ]
+].
+
+russ := Person new.
+russ printOn.
